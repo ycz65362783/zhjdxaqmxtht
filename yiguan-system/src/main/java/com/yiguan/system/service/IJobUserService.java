@@ -18,7 +18,7 @@ public interface IJobUserService
 
     public int updateJobUserByPrimaryKey(JobUser jobUser);
 
-    public int deleteJobUserByPrimaryKey(JobUser jobUser);
+    public int deleteJobUserByPrimaryKey(String  id);
 
     public List<QualificationDetails> getQualificationDetailsByUserId(String jobUserId);
 

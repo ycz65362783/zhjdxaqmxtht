@@ -54,8 +54,10 @@ public class JobUserServiceImpl implements IJobUserService
 
     //逻辑删除，不采用物理删除
     @Override
-    public int deleteJobUserByPrimaryKey(JobUser jobUser)
+    public int deleteJobUserByPrimaryKey(String id)
     {
+        JobUser jobUser=new JobUser();
+        jobUser.setId(id);
         jobUser.setIsDeleted(Constants.IS_DELETED.YES);
         BeanUtils.initUpdateProperty(jobUser);
         return jobUserMapper.updateByPrimaryKeySelective(jobUser);

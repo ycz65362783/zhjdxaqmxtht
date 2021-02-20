@@ -32,9 +32,9 @@ public class JobUserModel {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date joinJobDate;
 
-    private Integer age;
+    private String age;
 
-    private Integer workAge;
+    private String workAge;
 
     private String national;
 

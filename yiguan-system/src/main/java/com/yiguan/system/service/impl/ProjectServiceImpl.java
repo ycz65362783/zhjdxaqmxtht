@@ -49,8 +49,10 @@ public class ProjectServiceImpl implements IProjectService
 
     //逻辑删除，不采用物理删除
     @Override
-    public int deleteProjectByPrimaryKey(Project project)
+    public int deleteProjectByPrimaryKey(String id)
     {
+        Project project=new Project();
+        project.setId(id);
         project.setIsDeleted(Constants.IS_DELETED.YES);
         BeanUtils.initUpdateProperty(project);
         return projectMapper.updateByPrimaryKeySelective(project);

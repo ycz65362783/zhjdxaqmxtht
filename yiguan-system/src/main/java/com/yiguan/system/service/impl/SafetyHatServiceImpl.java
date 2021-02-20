@@ -48,8 +48,10 @@ public class SafetyHatServiceImpl implements ISafetyHatService
     }
 
     @Override
-    public int deleteSafetyHatByPrimaryKey(SafetyHat safetyHat)
+    public int deleteSafetyHatByPrimaryKey(String id)
     {
+        SafetyHat safetyHat=new SafetyHat();
+        safetyHat.setId(id);
         safetyHat.setIsDeleted(Constants.IS_DELETED.YES);
         BeanUtils.initUpdateProperty(safetyHat);
         return safetyHatMapper.updateByPrimaryKeySelective(safetyHat);

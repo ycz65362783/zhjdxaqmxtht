@@ -17,6 +17,6 @@ public interface ISafetyHatService
 
     public int updateSafetyHatByPrimaryKey(SafetyHat safetyHat);
 
-    public int deleteSafetyHatByPrimaryKey(SafetyHat safetyHat);
+    public int deleteSafetyHatByPrimaryKey(String id);
 
 }

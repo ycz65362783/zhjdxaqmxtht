@@ -53,6 +53,8 @@ public class SysRole extends BaseEntity
     /** 用户是否存在此角色标识 默认不存在 */
     private boolean flag = false;
 
+    private String ownUsername;
+
     /** 菜单组 */
     private Long[] menuIds;
 
@@ -203,7 +205,15 @@ public class SysRole extends BaseEntity
     {
         this.deptIds = deptIds;
     }
-    
+
+    public String getOwnUsername() {
+        return ownUsername;
+    }
+
+    public void setOwnUsername(String ownUsername) {
+        this.ownUsername = ownUsername;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

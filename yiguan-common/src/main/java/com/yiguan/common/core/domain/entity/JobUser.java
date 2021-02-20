@@ -42,8 +42,8 @@ public class JobUser {
     @Column(name = "school_record")
     private String school_record;
 
-    @Column(name = "political_landspace")
-    private String politicalLandSpace;
+    @Column(name = "political_landscape")
+    private String politicalLandScape;
 
     @Column(name = "professional_title")
     private String professionalTitle;
@@ -145,12 +145,12 @@ public class JobUser {
         this.school_record = school_record;
     }
 
-    public String getPoliticalLandSpace() {
-        return politicalLandSpace;
+    public String getPoliticalLandScape() {
+        return politicalLandScape;
     }
 
-    public void setPoliticalLandSpace(String politicalLandSpace) {
-        this.politicalLandSpace = politicalLandSpace;
+    public void setPoliticalLandScape(String politicalLandScape) {
+        this.politicalLandScape = politicalLandScape;
     }
 
     public String getProfessionalTitle() {

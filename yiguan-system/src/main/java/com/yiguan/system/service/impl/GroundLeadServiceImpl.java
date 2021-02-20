@@ -46,7 +46,9 @@ public class GroundLeadServiceImpl implements IGroundLeadService
 
 
     @Override
-    public int deleteGroundLeadBByPrimaryKey(GroundLead groundLead) {
+    public int deleteGroundLeadBByPrimaryKey(String id) {
+        GroundLead groundLead=new GroundLead();
+        groundLead.setId(id);
         groundLead.setIsDeleted(Constants.IS_DELETED.YES);
         BeanUtils.initUpdateProperty(groundLead);
         return groundLeadMapper.updateByPrimaryKeySelective(groundLead);

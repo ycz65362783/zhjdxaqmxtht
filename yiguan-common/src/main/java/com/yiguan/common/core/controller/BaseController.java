@@ -60,6 +60,20 @@ public class BaseController
     }
 
     /**
+     * 设置请求分页数据
+     */
+    protected void startPage(PageDomain pageDomain)
+    {
+        Integer pageNum = pageDomain.getPageNum();
+        Integer pageSize = pageDomain.getPageSize();
+        if (StringUtils.isNotNull(pageNum) && StringUtils.isNotNull(pageSize))
+        {
+            String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
+            PageHelper.startPage(pageNum, pageSize, orderBy);
+        }
+    }
+
+    /**
      * 响应请求分页数据
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -68,7 +82,7 @@ public class BaseController
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.SUCCESS);
         rspData.setMsg("查询成功");
-        rspData.setRows(list);
+        rspData.setData(list);
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
     }

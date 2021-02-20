@@ -19,6 +19,6 @@ public interface IGroundLeadService
 
      int updateGroundLeadByPrimaryKey(GroundLead groundLead);
 
-     int deleteGroundLeadBByPrimaryKey(GroundLead groundLead);
+     int deleteGroundLeadBByPrimaryKey(String id);
 
 }

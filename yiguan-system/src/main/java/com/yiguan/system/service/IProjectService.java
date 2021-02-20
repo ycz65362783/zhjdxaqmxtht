@@ -17,6 +17,6 @@ public interface IProjectService
 
     public int updateProjectByPrimaryKey(Project project);
 
-    public int deleteProjectByPrimaryKey(Project project);
+    public int deleteProjectByPrimaryKey(String id);
 
 }
