@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiguan.system.mapper.GroundLeadMapper">
+
+    <resultMap type="GroundLeadModel" id="GroundLeadResult">
+        <id property="id" column="id"/>
+        <result property="groundLeadName" column="ground_lead_name"/>
+        <result property="groundLeadType" column="ground_lead_type"/>
+        <result property="groundLeadNo" column="ground_lead_no"/>
+        <result property="mountPointName" column="mount_point_name"/>
+        <result property="onlineStatus" column="online_status"/>
+        <result property="jobUserId" column="job_user_id"/>
+        <result property="bindUWB" column="bind_UWB"/>
+        <result property="ownCompany" column="own_company"/>
+        <result property="teamGroup" column="team_group"/>
+        <result property="batteryVoltageLevel" column="battery_voltage_level"/>
+        <result property="lifecycle" column="lifecycle"/>
+        <result property="remainingElectricity" column="remaining_electricity"/>
+        <result property="lifecycle" column="lifecycle"/>
+        <result property="productionDate" column="production_date"/>
+        <result property="trialDate" column="trial_date"/>
+        <result property="nextTrialDate" column="next_trial_date"/>
+        <result property="batteryVoltageThreshold" column="battery_voltage_threshold"/>
+        <result property="hookThreshold" column="hook_threshold"/>
+        <result property="applianceStoreId" column="appliance_store_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="projectId" column="project_id"/>
+        <result property="jobUserName" column="job_user_name"/>
+        <result property="projectName" column="project_name"/>
+<!--        <association property="applianceStore" column="id" javaType="com.yiguan.common.core.domain.entity.ApplianceStore">
+            <id column="appsId"  property="id" />
+            <result column="status"  property="status" />
+            <result column="voltageLevel" property="voltageLevel"/>
+        </association>-->
+        <collection property="mountPointList" javaType="java.util.List" resultMap="MountPointResult"/>
+    </resultMap>
+
+    <resultMap id="MountPointResult" type="MountPoint">
+        <result property="id" column="mpId"/>
+        <result property="groundLeadId" column="ground_lead_id"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+        <result property="mountPointTime" column="mount_point_time"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="createBy" column="mpCreateBy"/>
+        <result property="createTime" column="mpCreateTime"/>
+        <result property="updateBy" column="mpUpdateBy"/>
+        <result property="updateTime" column="mpUpdateTime"/>
+        <result property="isDeleted" column="mpIsDeleted"/>
+    </resultMap>
+
+    <select id="selectGroundLeadList" parameterType="GroundLeadModel" resultMap="GroundLeadResult">
+        select
+        gl.id,
+        gl.ground_lead_name,
+        gl.ground_lead_type,
+        gl.ground_lead_no,
+        gl.mount_point_name,
+        gl.online_status,
+        gl.job_user_id,
+        gl.bind_UWB,
+        gl.own_company,
+        gl.team_group,
+        gl.battery_voltage_level,
+        gl.lifecycle,
+        gl.remaining_electricity,
+        gl.production_date,
+        gl.trial_date,
+        gl.next_trial_date,
+        gl.battery_voltage_threshold,
+        gl.hook_threshold,
+        gl.create_time,
+        gl.create_by,
+        gl.update_by,
+        gl.update_time,
+        gl.is_deleted,
+        gl.project_id,
+        ju.job_user_name,
+        pro.project_name,
+        mp.id mpId,
+        mp.ground_lead_id,
+        mp.name,
+        mp.status,
+        mp.mount_point_time,
+        mp.longitude,
+        mp.latitude,
+        mp.create_time mpCreateTime,
+        mp.create_by mpCreateBy,
+        mp.update_by mpUpdateBy,
+        mp.update_time mpUpdateTime,
+        mp.is_deleted mpIsDeleted
+        from ground_lead gl
+        LEFT OUTER JOIN job_user ju on ju.id = gl.job_user_id
+        LEFT OUTER JOIN project pro on pro.id = gl.project_id
+        LEFT OUTER JOIN mount_point mp on mp.ground_lead_id = gl.id
+        <where>
+            gl.is_deleted = 0
+            <if test="groundLeadName != null and groundLeadName != ''">AND gl.ground_lead_name LIKE
+                #{groundLeadName,jdbcType=VARCHAR}
+            </if>
+            <if test="id != null and id != '' ">AND gl.id = #{id}</if>
+            <if test="groundLeadNo != null and groundLeadNo != ''">AND gl.ground_lead_no LIKE
+                #{groundLeadNo,jdbcType=VARCHAR}
+            </if>
+            <if test="ownCompany != null and ownCompany != ''">AND gl.own_company LIKE #{ownCompany,jdbcType=VARCHAR}
+            </if>
+            <if test="teamGroup != null and teamGroup != ''">AND gl.team_group LIKE #{teamGroup,jdbcType=VARCHAR}</if>
+        </where>
+    </select>
+
+</mapper>
